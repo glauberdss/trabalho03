@@ -9,6 +9,7 @@ Métodos para os grupos
 
 Grupo 01
 	cadastraEstoque(Estoque)
+
 		Estoque = {codigo,descricao,localizao}
 
 		DeleteEstoque (codigoEstoque)
@@ -21,9 +22,12 @@ Grupo 01
 
 Grupo 02
 	cadastraFabricante(Fabricante)
+
 		Fabricante = {codigo,descricao,localizao}
 		DeleteFabricante (codigoFabricante)
+
 	verificar se exite algum fabricante cadastrado
+
 		listaFabricante( )
 		consultaFabricante(codigoFabricante)
 
