@@ -2,23 +2,23 @@
 from SOAPpy import SOAPServer
 db = 'usuarios.txt'
 
-#def login(usuario,senha):
+
 def login(user):
     try:
         linhas = open(db,'r').read()
     except:
         return False
-    
+
     for linha in linhas.split('\n'):
-        
+
         if linha == '':
-           break 
+           break
         user1,passwd = linha.split('|')
         if user['usuario'] == user1 and user['senha'] == passwd:
             return True
     return False
 
-#def registra(usuario,senha):
+
 def registra(user):
     if login(user):
         return False
