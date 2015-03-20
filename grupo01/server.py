@@ -20,7 +20,7 @@ def deleteEstoque(codigo):
     newarq = ''
     flag = 0
 
-    if consultaProdutoEmEstoque(codigo):
+    if consultaEstoqueemProdutoEstoque(codigo):
         for linha in linhas.split('\n'):
             arq = linha.split('|')
             if arq[0] != codigo:
