@@ -1,3 +1,9 @@
 1qa2ws|1qa2ws
 lglmoura|1q2w3e4r
+<<<<<<< HEAD
 fquintanilha|lululuiza-330115
+=======
+aaa|1q2w3e4r
+dddd|1q2w3e4r
+ddd|1q2w3e4r
+>>>>>>> 4b815e9ca7eee1ac5ae97c9db9b2a27c9bc522c4
