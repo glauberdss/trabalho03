@@ -3,7 +3,7 @@
 from SOAPpy import SOAPProxy
 
 # conectando diretamente
-servico = SOAPProxy("http://localhost:8001")
+servico = SOAPProxy("http://localhost:8012")
 
 print 'Cadastrado de Comissao'
 codigoComissao = raw_input('Codigo da Comissao: ')
