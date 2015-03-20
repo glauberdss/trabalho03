@@ -1,10 +1,14 @@
 Trabalho 03
 	WebService da Pos-Graduação -2014-2
+
 	Implementação de Sistemas de Vendas
 
 	Os grupos deverão implementar clientes e servidor para os métodos descritos
 
 Métodos para os grupos
+
+USe o numero do Grupo como Complemento da porat TCP
+no server ex:Grupo 01 => porta : 8001
 
 
 Grupo 01
@@ -14,7 +18,7 @@ Grupo 01
 
 		DeleteEstoque (codigoEstoque)
 
-	verificar se exite algum produto cadastrado
+	verificar se exite algum produto cadastrado ProdutoEstoque
 
 		listaEstoque( )
 
@@ -27,7 +31,7 @@ Grupo 02
 
 		DeleteFabricante (codigoFabricante)
 
-	verificar se exite algum fabricante cadastrado
+	verificar se exite algum fabricante cadastrado em Produto
 
 		listaFabricante( )
 		consultaFabricante(codigoFabricante)
@@ -52,6 +56,8 @@ Grupo 04
 	verificar se o estoque e produto existem
 
 		consultaProdutoEmEstoque(codigoProduto)
+
+		consultaEstoqueemProdutoEstoque(codigoEstoque)
 
 		pesquisaPreçoProdutoEstoque(codigoproduto,codigoestoque)
 
