@@ -1,10 +1,14 @@
 Trabalho 03
 	WebService da Pos-Graduação -2014-2
+
 	Implementação de Sistemas de Vendas
 
 	Os grupos deverão implementar clientes e servidor para os métodos descritos
 
 Métodos para os grupos
+
+USe o numero do Grupo como Complemento da porat TCP
+no server ex:Grupo 01 => porta : 8001
 
 
 Grupo 01
