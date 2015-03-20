@@ -14,4 +14,3 @@ venda = {'codigoVenda':codigoVenda,'codigoCliente':codigoCliente,'codigoFunciona
 
 if service.cadastrarVenda(venda):
 	print 'Cadastrado com sucesso'
-
