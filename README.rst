@@ -18,7 +18,7 @@ Grupo 01
 
 		DeleteEstoque (codigoEstoque)
 
-	verificar se exite algum produto cadastrado
+	verificar se exite algum produto cadastrado ProdutoEstoque
 
 		listaEstoque( )
 
@@ -31,7 +31,7 @@ Grupo 02
 
 		DeleteFabricante (codigoFabricante)
 
-	verificar se exite algum fabricante cadastrado
+	verificar se exite algum fabricante cadastrado em Produto
 
 		listaFabricante( )
 		consultaFabricante(codigoFabricante)
@@ -56,6 +56,8 @@ Grupo 04
 	verificar se o estoque e produto existem
 
 		consultaProdutoEmEstoque(codigoProduto)
+
+		consultaEstoqueemProdutoEstoque(codigoEstoque)
 
 		pesquisaPreçoProdutoEstoque(codigoproduto,codigoestoque)
 
