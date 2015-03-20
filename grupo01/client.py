@@ -19,7 +19,7 @@ deletecodigo = raw_input('Codigo: ')
 if servico.deleteEstoque(deletecodigo):
 	print 'Deletado com sucesso'
 else:
-	print 'Produto nao encontrado'
+	print 'Produto nao encontrado no estoque'
 
 retorno = servico.listaEstoque()
 print retorno 

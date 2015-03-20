@@ -12,24 +12,28 @@ def cadastrarEstoque(estoque):
     conexao.close()
     return True
 def deleteEstoque(codigo):
+    servico = SOAPProxy("http://localhost:8004")
     try:
         linhas = open(db,'r').read()
     except:
         return False
     newarq = ''
     flag = 0
-    for linha in linhas.split('\n'):
-        arq = linha.split('|')
-        if arq[0] != codigo:
-           newarq = newarq + '\n' + linha
-        if arq[0] == codigo:
-            flag = 1
 
-    if flag == 0:
-        return False
+    if consultaProdutoEmEstoque(codigo):
+        for linha in linhas.split('\n'):
+            arq = linha.split('|')
+            if arq[0] != codigo:
+               newarq = newarq + '\n' + linha
+            if arq[0] == codigo:
+                flag = 1
+        if flag == 0:
+            return False
+        else:
+            open(db,'w').write(newarq)
+        return True
     else:
-        open(db,'w').write(newarq)
-    return True
+            return False
 def listaEstoque():
     try:
         linhas = open(db,'r').read()
