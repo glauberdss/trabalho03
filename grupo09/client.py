@@ -2,15 +2,19 @@ from SOAPpy import SOAPProxy
 
 service = SOAPProxy("http://localhost:8009")
 
-codigoVenda = raw_input('Codigo Venda: ')
-codigoCliente = raw_input('Codigo Cliente: ')
-codigoFuncionario = raw_input('codigo Funcionario: ')
+codigo_venda = raw_input('Codigo Venda: ')
+codigo_cliente = raw_input('Codigo Cliente: ')
+codigo_funcionario = raw_input('codigo Funcionario: ')
 data = raw_input('Data: ')
-valortotal = raw_input('Valor Total: ')
-codigoProduto = raw_input('Codigo Produto: ')
+valor_total = raw_input('Valor Total: ')
+codigo_produto = raw_input('Codigo Produto: ')
 quantidade = raw_input('Quantidade: ')
 
-venda = {'codigoVenda':codigoVenda,'codigoCliente':codigoCliente,'codigoFuncionario':codigoFuncionario,'data' :data, 'valortotal' :valortotal, 'codigoProduto' :codigoProduto, 'quantidade' :quantidade}
+sale = {'codigo_venda':codigo_venda,'codigo_cliente':codigo_cliente,'codigo_funcionario':codigo_funcionario,'data' :data, 'valor_total' :valor_total, 'codigo_produto':codigo_produto, 'quantidade' :quantidade}
 
-if service.cadastrarVenda(venda):
+if service.new_sale(sale):
 	print 'Cadastrado com sucesso'
+else:
+	print 'Esse codigo de venda ja existe'
+
+
