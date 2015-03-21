@@ -9,7 +9,7 @@ def cadastraFuncionario(funcionario):
  if consultaFuncionario(funcionario['codigo']):
     return False
  conexao = open(db,'a')
- conexao.write('%s|%s\n' % (funcionario['codigo'],funcionario['nome'], funcionario ['endereco'], funcionario ['sexo'], funcionario ['datanascimento']))
+ conexao.write('%s|%s|%s|%s|%s\n' % (funcionario['codigo'],funcionario['nome'], funcionario ['endereco'], funcionario ['sexo'], funcionario ['datanascimento']))
  conexao.close()
  return True
 
