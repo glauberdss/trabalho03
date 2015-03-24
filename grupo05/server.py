@@ -17,21 +17,17 @@ def deletarFornecedor(codigoFornecedor):
 	try:
 	
 		servico = SOAPProxy("http://localhost:8007")
-		compras = servico.listarCompra()
-		
-		existe = False
-		
-		for linha in compras:
-			codigo, descricao = linha.split('|')
-			if codigo == codigoFornecedor:
-				existe = True
 
-		if existe is False:
-	
+
+		#acreditando que o servico retorne true ou false
+		if servico.consultaFornecedorExisteCompra(codigoFornecedor):
+			return False
+		else:
+
 			f = open(db,"r")
 			linhas = f.readlines()
 			f.close()
-	
+
 			f = open(db,"w")
 			for linha in linhas:
 				codigo, nome, contato = linha.split('|')
@@ -45,6 +41,7 @@ def deletarFornecedor(codigoFornecedor):
 
 def consultaFornecedor(codigoFornecedor):
 	try:
+
 		linhas = open(db,'r').read()
 		f = open(db,"r")
 		linhas = f.readlines()
@@ -52,6 +49,7 @@ def consultaFornecedor(codigoFornecedor):
 		for linha in linhas:
 			codigo, nome, contato = linha.split('|')
 			if codigoFornecedor == codigo:
+				f.close()
 				return True
 		
 		f.close()
@@ -66,6 +64,7 @@ def listarFornecedor():
 		linhas = open(db,'r').read()
 		f = open(db,"r")
 		linhas = f.readlines()
+		f.close()
 		return linhas
 	except:
 		return False
