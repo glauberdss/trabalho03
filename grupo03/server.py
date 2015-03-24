@@ -5,7 +5,7 @@ from SOAPpy import SOAPProxy
 
 
 db = 'produto.txt'
-
+#alteracoes
 def cadastrarProduto(Produto):
 	if consultaFabricante(Produto['codigoFabricante']):
 		return False

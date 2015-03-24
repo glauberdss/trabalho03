@@ -22,7 +22,7 @@ retorno = servico.listarProduto()
 print retorno
 
 
-
+#validando
 print'Consultando Produto'
 retorno = servico.consultaProduto(1)
 print retorno
