@@ -12,9 +12,7 @@ quantidade = raw_input('Quantidade: ')
 
 sale = {'codigo_venda':codigo_venda,'codigo_cliente':codigo_cliente,'codigo_funcionario':codigo_funcionario,'data' :data, 'valor_total' :valor_total, 'codigo_produto':codigo_produto, 'quantidade' :quantidade}
 
-if service.new_sale(sale):
+if service.cadastrarVenda(sale):
 	print 'Cadastrado com sucesso'
 else:
-	print 'Esse codigo de venda ja existe'
-
-
+		print 'Nao foi possivel cadastrar a venda. Verifique se o codigo de venda ja nao existe.'
