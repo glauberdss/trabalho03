@@ -25,14 +25,14 @@ def deletarCliente(codigoCliente):
 	return True
 
 #	Impossibilidade de consulta:
-#		Foi observado que, aparentemente, não é possível realizar uma consulta de uma forma que satisfaça a solicitação de desenvolvimento do metodo "consultarCliente(codigoCliente)".
-#		Para desenvolver o metodo citato é necessário realizar uma consulta as vendas realizadas ,uma vez que o metodo, conforme solicitado, deve "Verificar se Cliente esta em algum venda".
-#		Foi pedido ao grupo 9 (vendas), que seja feito os metodos "cadastrarVenda(Venda)", "consultarVenda(codigoVenda)" e "deletarVenda(codigoVenda)", como nosso metodo recebe apenas o "codigoCliente" como parametro e não existe um metodo "listarVenda" no webservice de vendas, não é possível verificar se o cliente está em alguma venda.
-#		Da forma como foi solicitado, nosso grupo teria que ter conhecimento de TODOS os codigos de venda para consultar um a um para comparar.
-#		Abaixo, desenvolvemos o metodo "consultarCliente" como se existisse um "listarVenda" no webservice de vendas, como sujestão de correção da impossibilidade.
-#
-#		Esse é o metodo listarVenda que acreditamos que deveria existir no webservice de vendas.
-#		
+#		Foi observado que, aparentemente, não é possível realizar uma consulta de uma forma que satisfaça a solicitação de desenvolvimento do método "consultarCliente(codigoCliente)".
+#		Para desenvolver o método citado é necessário realizar uma consulta as vendas realizadas, uma vez que o método, conforme solicitado, deve "Verificar se Cliente esta em algum venda".
+#		Foi pedido ao grupo 9 (vendas), que sejam feitos os métodos "cadastrarVenda(Venda)", "consultarVenda(codigoVenda)" e "deletarVenda(codigoVenda)", como nosso método recebe apenas o "codigoCliente" como parâmetro e não existe um método "listarVenda" no webservice de vendas, não é possível verificar se o cliente está em alguma venda.
+#		Da forma como foi solicitado, nosso grupo teria que ter conhecimento de TODOS os códigos de venda para consultar um a um para comparar.
+#		Abaixo, desenvolvemos o método "consultarCliente" como se existisse um "listarVenda" no webservice de vendas, como sugestão de correção da impossibilidade.
+
+#		Esse é o método listarVenda que acreditamos que deveria existir no webservice de vendas.
+#	
 #def listarVenda():
 #	try:
 #		conexao_r = open(db,"r")
