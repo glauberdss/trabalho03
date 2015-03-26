@@ -1,6 +1,7 @@
 #-*- encoding: iso-8859-1 -*-
 
 from SOAPpy import SOAPServer
+from SOAPpy import SOAPProxy
 
 db = 'clientes.txt'
 
