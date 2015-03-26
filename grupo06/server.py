@@ -31,7 +31,16 @@ def deletarCliente(codigoCliente):
 #		Da forma como foi solicitado, nosso grupo teria que ter conhecimento de TODOS os codigos de venda para consultar um a um para comparar.
 #		Abaixo, desenvolvemos o metodo "consultarCliente" como se existisse um "listarVenda" no webservice de vendas, como sujestão de correção da impossibilidade.
 #
-#		No final do código, também há um "listarVenda" comentado que acreditamos que deveria ser incluído no service de vendas.
+#		Esse é o metodo listarVenda que acreditamos que deveria existir no webservice de vendas.
+#		
+#def listarVenda():
+#	try:
+#		conexao_r = open(db,"r")
+#		vendas_linhas = conexao_r.readlines()
+#		conexao_r.close()
+#		return vendas_linhas
+#	except:
+#		return False
 
 def consultarCliente(codigoCliente):
 	try:	
