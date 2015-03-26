@@ -23,10 +23,23 @@ def deletarCliente(codigoCliente):
 	conexao_w.close()
 	return True
 
+def consultarCliente(codigoCliente):
+	try:	
+		servico_venda = SOAPProxy("http://localhost:8009")
+		vendas_linhas = servico_venda.listarVenda()
+		
+		for vendas_linhas in venda_linha:
+			codigoVenda, codigoClienteVenda, codigoFuncionario, data, valortotal, codigoProduto, quantidadecodigoVenda, codigoCliente, codigoFuncionario, data, valortotal, codigoProduto, quantidade = venda_linha.split('|')
+			if codigoClienteVenda == codigoCliente:
+				return True
+		return False
+	except:
+		return False
 
 serv = SOAPServer(("localhost", 8006))
 
 serv.registerFunction(cadastraCliente)
 serv.registerFunction(deletarCliente)
+serv.registerFunction(consultarCliente)
 
 serv.serve_forever()
