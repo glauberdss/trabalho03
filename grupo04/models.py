@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 import json
 from SOAPpy import SOAPProxy
+from server_dummies import ClienteProdutoFake, ClienteEstoqueFake
+
+class Servicos():
+    # habilita serviços fake para testes
+    #estoque = SOAPProxy("localhost", 8001)
+    #produto = SOAPProxy("localhost", 8003)
+    estoque = ClienteEstoqueFake()
+    produto = ClienteProdutoFake()
 
 class DB(list):
 
@@ -18,8 +26,6 @@ class DB(list):
 
 
 class ProdutoNoEstoque(dict):
-    cliente_estoque = SOAPProxy("localhost", 8001)
-    cliente_produto = SOAPProxy("localhost", 8003)
 
     def salvar(self):
         if self.eh_valido():
@@ -30,10 +36,10 @@ class ProdutoNoEstoque(dict):
         return self._estoque_existe() and self._produto_existe()
 
     def _estoque_existe(self):
-        return self.cliente_estoque.consultaEstoque(self['codigo_estoque'])
+        return Servicos.estoque.consultaEstoque(self['codigo_estoque'])
 
     def _produto_existe(self):
-        return self.cliente_produto.consultaProduto(self['codigo_produto'])
+        return Servicos.produto.consultaProduto(self['codigo_produto'])
 
     @classmethod
     def verificar_quantidade(cls, codigo_produto, codigo_estoque):
@@ -55,3 +61,13 @@ class EstoqueFoiUsado():
         return len(DB().procurar(
             lambda item: (self.codigo_estoque == item['codigo_estoque'])
         )) != 0
+
+
+class PrecoDoProduto():
+
+    def __init__(self, codigo_produto):
+        self.codigo_produto = codigo_produto
+
+    def consultar(self):
+        produto = Servicos.produto.consultaProduto(self.codigo_produto)
+        return produto['preco'] if produto else 0

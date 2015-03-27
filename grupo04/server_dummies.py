@@ -8,4 +8,10 @@ class ClienteEstoqueFake():
 class ClienteProdutoFake():
 
     def consultaProduto(self, codigo_produto):
-        return codigo_produto == 1
+        if codigo_produto == 1:
+            return {'codigo': 1,
+                    'descricao': 'eisenbahn weizenbock',
+                    'preco': 25,
+                    'codigoFabricante': 1}
+        else:
+            return False
