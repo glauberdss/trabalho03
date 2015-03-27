@@ -49,22 +49,9 @@ def deletarAreceber(codigoR):
 	except:
 		return False
 
-"""
-def listaComissao():
-	try:
-		linhas = open(db,'r').read()
-		f = open(db,"r")
-		linhas = f.readlines()
-		return linhas
-	except:
-		return False
-
-"""
 serv = SOAPServer(("localhost", 8011))
 
 serv.registerFunction(ContasArecebe)
 serv.registerFunction(consultarAreceber)
 serv.registerFunction(deletarAreceber)
-#serv.registerFunction(listaComissao)
-#serv.registerFunction(calcularComissao)
 serv.serve_forever()
