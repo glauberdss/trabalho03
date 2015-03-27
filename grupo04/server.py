@@ -1,20 +1,19 @@
-#-*- encoding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 
 from SOAPpy import SOAPServer, SOAPProxy
 from produto_no_estoque import ProdutoNoEstoque
+from server_dummies import ClienteProdutoFake, ClienteEstoqueFake
 
 server = SOAPServer(("localhost", 8004))
-cliente_estoque = SOAPProxy("localhost", 8001)
-cliente_produto = SOAPProxy("localhost", 8003)
-
+ProdutoNoEstoque.cliente_produto = ClienteProdutoFake()
+ProdutoNoEstoque.cliente_estoque = ClienteEstoqueFake()
 
 def inserir_produto_no_estoque(codigo_estoque, codigo_produto, quantidade):
-    ProdutoNoEstoque(
+    return ProdutoNoEstoque(
         codigo_estoque=codigo_estoque,
         codigo_produto=codigo_produto,
         quantidade=quantidade
     ).salvar()
-    return True
 
 def consultar_produto_em_estoque(codigo_produto, codigo_estoque):
     return ProdutoNoEstoque.verificar_quantidade(codigo_produto, codigo_estoque)

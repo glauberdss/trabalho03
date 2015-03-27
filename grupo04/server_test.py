@@ -1,4 +1,4 @@
-#-*- encoding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 
 import json, time
 from subprocess import Popen
@@ -11,18 +11,20 @@ reset_db()
 server_process = Popen(['python', 'server.py'])
 time.sleep(1)
 
-cliente = SOAPProxy("http://localhost:8004")
+client = SOAPProxy("http://localhost:8004")
 
 try:
-    assert cliente.inserirProdutoEstoque(1, 1, 5)
+    assert client.inserirProdutoEstoque(1, 1, 5)
+    assert client.inserirProdutoEstoque(1, 2, 5) == False
+    assert client.inserirProdutoEstoque(2, 1, 5) == False
 
-    assert cliente.consultaProdutoEmEstoque(1, 1) == 5
-    assert cliente.consultaProdutoEmEstoque(1, 2) == 0
-    assert cliente.consultaProdutoEmEstoque(2, 1) == 0
+    assert client.consultaProdutoEmEstoque(1, 1) == 5
+    assert client.consultaProdutoEmEstoque(1, 2) == 0
+    assert client.consultaProdutoEmEstoque(2, 1) == 0
 
-    #assert cliente.consultaEstoqueEmProdutoEstoque(1) == 10
-    #assert cliente.consultaEstoqueEmProdutoEstoque(2) == 0
-    #assert cliente.pesquisaPrecoProdutoEstoque(1) == 45.5
+    #assert client.consultaEstoqueEmProdutoEstoque(1) == 10
+    #assert client.consultaEstoqueEmProdutoEstoque(2) == 0
+    #assert client.pesquisaPrecoProdutoEstoque(1) == 45.5
 except AssertionError, erro:
     print "\033[1m\033[91mtests failed!\033[0m"
     raise

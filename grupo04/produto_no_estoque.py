@@ -1,5 +1,6 @@
-#-*- encoding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 import json
+from SOAPpy import SOAPProxy
 
 class DB(list):
 
@@ -17,10 +18,22 @@ class DB(list):
 
 
 class ProdutoNoEstoque(dict):
+    cliente_estoque = SOAPProxy("localhost", 8001)
+    cliente_produto = SOAPProxy("localhost", 8003)
 
     def salvar(self):
-        DB().adicionar(self)
-        return True
+        if self.eh_valido():
+            DB().adicionar(self)
+        return self.eh_valido()
+
+    def eh_valido(self):
+        return self._estoque_existe() and self._produto_existe()
+
+    def _estoque_existe(self):
+        return self.cliente_estoque.consultaEstoque(self['codigo_estoque'])
+
+    def _produto_existe(self):
+        return self.cliente_produto.consultaProduto(self['codigo_produto'])
 
     @classmethod
     def verificar_quantidade(cls, cod_produto, cod_estoque):
