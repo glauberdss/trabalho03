@@ -11,7 +11,3 @@ mes = raw_input('Mes: ')
 
 print servico.calcularComissao(codigoFun,ano,mes)
 
-#if servico.calcularComissao(codigoFun,ano,mes):
-#	print 'valor' 
-#else:
-#	print 'O comissao informado nao existe!'

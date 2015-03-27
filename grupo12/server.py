@@ -41,7 +41,7 @@ def calcularComissao(pcodigoFun,pano,pmes):
     for linha in linhas:
 		codigoComissao,codigoFuncionario,ano,mes, valor = linha.split('|')
 		if ( pcodigoFun == codigoFuncionario ) & ( pano == ano ) & ( pmes == mes ):
-		     pvalor = pvalor + valor		
+		     pvalor =pvalor + float(valor) 		
 
     f.close()
          
@@ -49,7 +49,7 @@ def calcularComissao(pcodigoFun,pano,pmes):
         
     
 
-def deletaComissaoFuncionario(codigoFun):
+def deletaComissaoFuncionario(pcodigoFun, pano, pmes):
 	try:
 		servico = SOAPProxy("http://localhost:8012")
         
@@ -59,8 +59,8 @@ def deletaComissaoFuncionario(codigoFun):
 	
 		f = open(db,"w")
 		for linha in linhas:
-			codigoComissao,codigoFuncionario_,ano,mes,valor = linha.split('|')
-			if codigoFuncionario != codigoFun:
+			codigoComissao,codigoFuncionario,ano,mes,valor = linha.split('|')
+			if codigoFuncionario != pcodigoFun:
 				f.write(linha)
 		f.close()
 		return True
