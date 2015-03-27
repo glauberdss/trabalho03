@@ -15,21 +15,53 @@ def cadastraFuncionario(funcionario):
 
 def consultaFuncionario(codigoFuncionario):
   try:
-    linhas = open(db, 'r').read()
-    f = open(db, "r")
-    linhas = f.readlines()
+       linhas = open(db,'r').read()
+       f = open(db,"r")
+       linhas = f.readlines()
 
-    for linha in linhas:
-      codigo, nome, endereco, sexo, datanascimento = linha.split('|')
-      if codigoFuncionario == codigo:
-        return True
+       for linha in linhas:
+           codigo, nome, endereco, sexo, datanascimento = linha.split('|')
+           if codigoFuncionario == codigo:
+               return True
 
-    f.close()
-    return False
-
+       f.close()
+       
+       return False
   except:
     return False
 
+  def deletaFuncionario(codigoFuncionario):
+    try:
+
+      servico = SOAPProxy("http://localhost:8008")
+      funcionario = servico.listaFuncionario()
+
+      existe = False
+
+      for linha in linhas:
+         codigo, nome, endereco, sexo, datanascimento = linha.split('|')
+         if codigoFuncionario == codigoFuncionario_:
+                existe = True
+
+      if existe is False:
+         
+         f = open(db, "r")
+         linhas = f.readlines()
+         f.close()
+
+         f = open(db, "w")
+         for linha in linhas:
+                codigo, nome, endereco, sexo, datanascimento = linha.split ('|')
+                if codigo != codigoFuncionario:
+                      f.write(linha)
+         f.close()
+
+         return True
+    except:
+      return False    
+
+         
+  
   def listaFuncionario():
     try:
       linhas = open(db, 'r'). read()
@@ -44,5 +76,6 @@ def consultaFuncionario(codigoFuncionario):
   serv.registerFunction(consultaFuncionario)
   serv.registerFunction(cadastraFuncionario)
   serv.registerFunction(listaFuncionario)
+
 
   serv.serve_forever() 
