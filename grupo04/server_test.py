@@ -22,8 +22,8 @@ try:
     assert client.consultaProdutoEmEstoque(1, 2) == 0
     assert client.consultaProdutoEmEstoque(2, 1) == 0
 
-    #assert client.consultaEstoqueEmProdutoEstoque(1) == 10
-    #assert client.consultaEstoqueEmProdutoEstoque(2) == 0
+    assert client.consultaEstoqueEmProdutoEstoque(1)
+    assert client.consultaEstoqueEmProdutoEstoque(2) == False
     #assert client.pesquisaPrecoProdutoEstoque(1) == 45.5
 except AssertionError, erro:
     print "\033[1m\033[91mtests failed!\033[0m"
