@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
-import json, time
+import json, time, os
 from subprocess import Popen
 from SOAPpy import SOAPProxy
 
+grupo04_path = os.path.abspath(os.path.dirname(__file__))
 def reset_db():
-    json.dump([], open('DB', 'w'))
+    json.dump([], open(grupo04_path+'/DB', 'w'))
 reset_db()
 
-server_process = Popen(['python', 'server.py'])
+server_process = Popen(['python', grupo04_path+'/server.py'])
 time.sleep(1)
 client = SOAPProxy("http://localhost:8004")
 

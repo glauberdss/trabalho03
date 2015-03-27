@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import json
+import json, os
 from SOAPpy import SOAPProxy
 from server_dummies import ClienteProdutoFake, ClienteEstoqueFake
 
@@ -11,14 +11,15 @@ class Servicos():
     produto = ClienteProdutoFake()
 
 class DB(list):
+    path = os.path.abspath(os.path.dirname(__file__)) + '/DB'
 
     def __init__(self, *args, **kwargs):
         super(DB, self).__init__(*args, **kwargs)
-        self.extend(json.load(open('DB', 'rb')))
+        self.extend(json.load(open(self.path, 'rb')))
 
     def adicionar(self, item):
         self.append(item)
-        json.dump(self, open('DB', 'wb'))
+        json.dump(self, open(self.path, 'wb'))
         return self
 
     def procurar(self, match):
