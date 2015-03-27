@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from SOAPpy import SOAPServer, SOAPProxy
-from produto_no_estoque import ProdutoNoEstoque
+from produto_no_estoque import ProdutoNoEstoque, EstoqueFoiUsado
 from server_dummies import ClienteProdutoFake, ClienteEstoqueFake
 
 server = SOAPServer(("localhost", 8004))
@@ -19,7 +19,7 @@ def consultar_produto_em_estoque(codigo_produto, codigo_estoque):
     return ProdutoNoEstoque.verificar_quantidade(codigo_produto, codigo_estoque)
 
 def consultar_estoque_em_produto_estoque(codigo_estoque):
-    return ProdutoNoEstoque.verificar_se_estoque_foi_usado(codigo_estoque)
+    return EstoqueFoiUsado(codigo_estoque).verificar()
 
 def pesquisar_preco_do_produto(codigo_produto):
     return True

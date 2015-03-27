@@ -45,8 +45,13 @@ class ProdutoNoEstoque(dict):
         )
         return resultado[0]['quantidade'] if resultado else 0
 
-    @classmethod
-    def verificar_se_estoque_foi_usado(cls, codigo_estoque):
+
+class EstoqueFoiUsado():
+
+    def __init__(self, codigo_estoque):
+        self.codigo_estoque = codigo_estoque
+
+    def verificar(self):
         return len(DB().procurar(
-            lambda item: (codigo_estoque == item['codigo_estoque'])
+            lambda item: (self.codigo_estoque == item['codigo_estoque'])
         )) != 0
