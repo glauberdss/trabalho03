@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from SOAPpy import SOAPProxy
-from server import cadastraFuncionario
+# from server import cadastraFuncionario
 
 # conectando diretamente
 servico = SOAPProxy("http://localhost:8008")
@@ -14,7 +14,7 @@ datanascimento = raw_input('datanascimento: ')
 
 funcionario ={'codigo':codigo, 'nome':nome, 'endereco':endereco, 'sexo':sexo, 'datanascimento':datanascimento}
 
-if cadastraFuncionario(funcionario):
+if servico.cadastraFuncionario(funcionario):
 	print 'funcionario cadastrado com sucesso'
 else:
 	print ' Problemas ao cadastrar! Tente novamente'

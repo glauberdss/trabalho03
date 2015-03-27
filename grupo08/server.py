@@ -5,6 +5,20 @@ from SOAPpy import SOAPProxy
 
 db = 'funcionario.txt'
 
+class ServicoVendaFake():
+  def consultarVendaPorFuncionario(self, codigoFuncionario):
+    if codigoFuncionario == '7':
+      return [{
+       'codigoVenda': 1,
+       'codigoCliente': 1,
+       'codigoFuncionario': 7,
+       'data': '05/06/2015',
+       'valor': 500
+      }]
+    else:
+      return []
+
+
 def cadastraFuncionario(funcionario):
  if consultaFuncionario(funcionario['codigo']):
     return False
@@ -22,7 +36,7 @@ def consultaFuncionario(codigoFuncionario):
        for linha in linhas:
            codigo, nome, endereco, sexo, datanascimento = linha.split('|')
            if codigoFuncionario == codigo:
-               return True
+              return True
 
        f.close()
        
@@ -30,52 +44,55 @@ def consultaFuncionario(codigoFuncionario):
   except:
     return False
 
-  def deletaFuncionario(codigoFuncionario):
-    try:
-
-      servico = SOAPProxy("http://localhost:8008")
-      funcionario = servico.listaFuncionario()
-
-      existe = False
-
-      for linha in linhas:
-         codigo, nome, endereco, sexo, datanascimento = linha.split('|')
-         if codigoFuncionario == codigoFuncionario_:
-                existe = True
-
-      if existe is False:
-         
-         f = open(db, "r")
-         linhas = f.readlines()
-         f.close()
-
-         f = open(db, "w")
-         for linha in linhas:
-                codigo, nome, endereco, sexo, datanascimento = linha.split ('|')
-                if codigo != codigoFuncionario:
-                      f.write(linha)
-         f.close()
-
-         return True
-    except:
-      return False    
-
-         
-  
-  def listaFuncionario():
-    try:
-      linhas = open(db, 'r'). read()
-      f = open(db, "r")
-      linhas = f.readlines()
-      return linhas
-    except:
+def deletaFuncionario(codigoFuncionario):
+  try:
+    # servico = SOAPProxy("http://localhost:8009")
+    servico = ServicoVendaFake()
+    # import pdb; pdb.set_trace()
+    vendas = servico.consultarVendaPorFuncionario(codigoFuncionario)
+    if len(vendas) > 0:
       return False
+    funcionarios = open(db, "r").readlines()
 
-  serv = SOAPServer(("localhost", 8008))
+    existe = False
 
-  serv.registerFunction(consultaFuncionario)
-  serv.registerFunction(cadastraFuncionario)
-  serv.registerFunction(listaFuncionario)
+    for linha in funcionarios:
+       codigo, nome, endereco, sexo, datanascimento = linha.split('|')
+       if codigoFuncionario == codigo:
+              existe = True
 
+    if existe:
+       
+       f = open(db, "r")
+       linhas = f.readlines()
+       f.close()
 
-  serv.serve_forever() 
+       f = open(db, "w")
+       for linha in linhas:
+              codigo, nome, endereco, sexo, datanascimento = linha.split ('|')
+              if codigo != codigoFuncionario:
+                    f.write(linha)
+       f.close()
+
+       return True
+  except:
+    return False    
+
+       
+
+def listaFuncionario():
+  try:
+    f = open(db, "r")
+    linhas = f.readlines()
+    return linhas
+  except:
+    return False
+
+serv = SOAPServer(("localhost", 8008))
+
+serv.registerFunction(consultaFuncionario)
+serv.registerFunction(cadastraFuncionario)
+serv.registerFunction(listaFuncionario)
+serv.registerFunction(deletaFuncionario)
+
+serv.serve_forever() 
