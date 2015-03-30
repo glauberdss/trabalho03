@@ -1,3 +1,4 @@
+#-*-encoding: iso-8859-1 -*-
 from SOAPpy import SOAPServer
 from SOAPpy import SOAPProxy
 db = 'cadastrarVenda.txt'
@@ -25,43 +26,42 @@ def consultarVenda(codigo_venda):
 def deletarVenda(codigo_venda):
   service = SOAPProxy("http://localhost:8009")
   try:
-    lines = open(db,'r').read()
-  except:
-      return False
-  newnote = ''
-  flag = 0
-
-  if consultarVenda(codigo_venda):
-      for line in lines.split('\n'):
-          note = line.split('|')
-          if note[0] != codigo_venda:
-             newnote = newnote + '\n' + line
-          if note[0] == codigo_venda:
-              flag = 1
-      if flag == 0:
-          return False
-      else:
-          open(db,'w').write(newnote)
-      return True
-  else:
-    return False
-
-def verificaSeExisteVendaParaFuncionario(codigo_funcionario):
-  try:
-    lines= open(db,'r').read()
-    v = open(db,"r")
-    lines = f.readlines()
-
+    lines = open(db, "r").readlines()
+    existe = False
     for line in lines:
+      codigo_venda, codigo_cliente, codigo_funcionario, data, valor_total, codigo_produto, quantidade = line.split('|')
+      if codigo_venda == codigo_venda:
+        existe = True
+    if existe:       
+      v = open(db, "r")
+      lines = v.readlines()
+      v.close()
+
+      v = open(db, "w")
+      for line in lines:
+        codigo_venda, codigo_cliente, codigo_funcionario, data, valor_total, codigo_produto, quantidade = line.split('|')
+        if codigo_venda != codigo_venda:
+          v.write(line)
+      v.close()
+      return True
+  except:
+    return False    
+
+#método retornando 0 para sem vendas e 1 para com vendas
+def verificaSeExisteVendaParaFuncionario(codigoFuncionario):
+  try:
+    linhas = open(db,'r').read()
+    f = open(db,"r")
+    linhas = f.readlines()
+    for linha in linhas:
       codigo_venda,codigo_cliente,codigo_funcionario,data,valor_total,codigo_produto,quantidade = linha.split('|')
-      if codigo_funcionario == codigo_funcionario:
+      if codigoFuncionario == codigo_funcionario:
         return True
     f.close()
     return False
   except:
     return False
-
-
+    
 serv = SOAPServer(("localhost", 8009))
 serv.registerFunction(cadastrarVenda)
 serv.registerFunction(consultarVenda)

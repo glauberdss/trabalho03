@@ -1,7 +1,9 @@
 from SOAPpy import SOAPProxy
 
 service = SOAPProxy("http://localhost:8009")
-
-print 'Selecione o codigo de :'
 code = raw_input('codigo da Venda: ')
-print service.consultarVenda(code)
+
+if service.consultarVenda(code):
+  print service.consultarVenda(code)
+else:
+  print 'nao encontrado'
